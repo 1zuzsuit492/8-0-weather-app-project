@@ -1,0 +1,36 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title> <!--project title for tests-->
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="main.js"></script>
+  </head>
+
+<body>
+<header>
+    <!-- search form where user enters location-->
+<h1>Weather App</h1>
+<form name="location">
+<label for="location_search">Enter a Location</label>
+<input type="text" id="location_search" name="location_search" placeholder="Enter a Location"/>
+<input type="submit" value='Search ☂️'></input>
+<!--value = button name-->
+</form>
+</header>
+
+    <main>
+      <article class="display"> <!--display class for tests-->
+        <div class="results">Choose a location to view the weather</div>
+      </article>
+      <article class="history"> <!--sidebar w/ previous searches-->
+        <h3>Previous Searches</h2>
+        <p>No previous searches</p>
+        <ol></ol>
+      </article>
+      <article class="days"></article>
+      <article></article>
+    </main>
+  </body>
+</html>
