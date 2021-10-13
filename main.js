@@ -1,6 +1,6 @@
 document.querySelector("form").addEventListener("submit", (event) => {
 event.preventDefault(); //keeps page from reloading
-const search = event.target.location_search.value.toLowerCase();
+const search = event.target.location_search.value;
 if (!search) {
 document.querySelector(".results").textContent =
 "No text entered: going to nearest location";
@@ -13,10 +13,10 @@ fetch(url)
 response.json().then((object) => {
 //creating object for the result and days displays
 results(object);
-//assigning history
+//selecting history
 document.querySelector(".history p").textContent = "";
 let newUrl = document.createElement("li"); //created li element
-//allowing the a tag to use a function rather than go to a link
+//making links as a list that displays area and deg in f// 
 newUrl.innerHTML = `<a href="javascript:history('${url}')" value='${url} name='test'>${object.nearest_area[0].areaName[0].value}- ${object.current_condition[0].FeelsLikeF}°F</a>`;
 //created a link as an li for the history
 newUrl.addEventListener("onclick", (event) => {
@@ -31,7 +31,7 @@ if (element.innerHTML === newUrl.innerHTML) {
 }
 });
 if (!found) {
-list.prepend(newUrl);
+list.appendChild(newUrl);
 }
 });
 })
@@ -50,7 +50,7 @@ return newDiv;
 
 function results(object) {
 let results = document.querySelector(".results");
-//assigning the results box values
+//assigning the results for the box values
 let area = object.nearest_area[0].areaName[0].value;
 let region = object.nearest_area[0].region[0].value;
 let country = object.nearest_area[0].country[0].value;
@@ -58,13 +58,15 @@ let current = object.current_condition[0].FeelsLikeF;
 results.innerHTML = `<h2>${area}</h2><p><b>Area:</b> ${area}</p><p><b>Region:</b> ${region}</p><p><b>Country:</b> ${country}</p><p><b>Currently:</b> Feels like ${current}°F</p>`;
 
 
-//days display
+//displays the weather for future dates
 document.querySelector(".days").innerHTML = "";
 let days = ["Today", "Tomorrow", "Day After Tomorrow"];
 for (let i = 0; i < days.length; i++) {
 let newDiv = document.createElement("div");
 newDiv.append(dailyTemp(days[i], object.weather[i]));
 document.querySelector(".days").append(newDiv);
+// let current = object.current_condition[0].FeelsLikeF;
+// days.innerHTML = `${current}`
 }
 }
 
